@@ -49,7 +49,7 @@ h1{
 }
 
 .dir_button, .file_entry{
-    width: 500px;
+    width: 90%;
     border:none;
     background-color: transparent;
 }
