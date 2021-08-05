@@ -2,12 +2,12 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="style.css"/>
-        <link rel="icon" href="wiew_icon.png"/>
-        <title>Wiew: <?php
-
-            
+        <link rel="icon" href="webview_icon.png"/>
+        <title>webview: <?php
             $default_dir = getcwd();
-            $debug = false;
+            //below is an example of a root directory from a webserver
+            //if webview.php is located in your root directory, replace "/var/www/html" with getcwd()
+            $server_root_dir = "/var/www/html";
 
             $dir = getDirectory($default_dir);
             $dir_disp = str_replace($default_dir, "/home", $dir);
@@ -30,6 +30,7 @@
             }
 
             function getFileNames($dir, $dir_content){
+                $files = [];
                 foreach($dir_content as $entry){
                     if(!is_dir($dir."/".$entry)){
                         $files[] = $dir."/".$entry;
@@ -39,6 +40,7 @@
             }
 
             function getDirNames($dir, $dir_content){
+                $dirs = [];
                 foreach($dir_content as $entry){
                     if(is_dir($dir."/".$entry)){
                         $dirs[] = $dir."/".$entry;
@@ -64,11 +66,11 @@
                 }
             }
 
-            function echoFiles($default, $files){
+            function echoFiles($server_root_dir, $files){
                 if(!empty($files)){
                     foreach($files as $file){
                         $tmp = removeParentDir($file);
-                        $link = str_replace($default, "", $file);
+                        $link = str_replace($server_root_dir, "", $file);
                         $html_file_str = 
                         "
                         <div class='entry' name='file_".$file."'>
@@ -128,7 +130,7 @@
             $files = getFileNames($dir, $dir_content);
 
             echoDirs($directories);
-            echoFiles($default_dir, $files);
+            echoFiles($server_root_dir, $files);
         ?>
 
 
