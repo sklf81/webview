@@ -5,8 +5,13 @@
         <link rel="icon" href="webview_icon.png"/>
         <title>webview: <?php
             $default_dir = getcwd();
+
+            //Example: You want to use webview but your home directory should be a child directory of your cwd
+            //$default_dir = getcwd()."/child_dir";
+
             //below is an example of a root directory from a webserver
             //if webview.php is located in your root directory, replace "/var/www/html" with getcwd()
+            
             $server_root_dir = "/var/www/html";
 
             $dir = getDirectory($default_dir);
@@ -133,6 +138,9 @@
             echoFiles($server_root_dir, $files);
         ?>
 
-
+    <div class="credits">
+            <h2>Copyright © 2022 | Philip Keusch</h2>
+            <a href="https://github.com/sklf81/webview"> github.com/sklf81/webview </a>
+    </div>
     </body>
 </html>
